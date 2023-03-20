@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title> Think Talent Services</title>
+</head>
+<body>
+    <font  align="center">
+        <p th:text="${message}" />
+    </font>
+
+    <table align="center">
+        <th align="center">Enter  Names</th>
+        <form method="get" action="/displayName">
+            <tr><td>First Name </td><td>: </td><td><input type="text" name="firstName" required /></td></tr>
+            <tr><td>   Middle Name </td><td>: </td><td><input type="text" name="middleName" /></td></tr>
+            <tr><td>   Last Name</td><td> :</td><td> <input type="text" name="lastName" required /></td></tr>
+            <tr><td colspan="3" align="center">  <input type="submit" /> </td></tr>
+        </form>
+    </table>
+</body>
+</html>
