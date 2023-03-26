@@ -39,4 +39,23 @@ public class NameController {
         return "redirect:/name";
     }
 
+    @RequestMapping("/edit/{id}")
+    public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
+        ModelAndView mav = new ModelAndView("editform");
+        Name name = dao.get(id);
+        mav.addObject("name", name);
+        return mav;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(@ModelAttribute("sale") Name name) {
+        dao.update(name);
+
+        return "redirect:/name";
+    }
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable(name = "id") int id) {
+        dao.delete(id);
+        return "redirect:/name";
+    }
 }

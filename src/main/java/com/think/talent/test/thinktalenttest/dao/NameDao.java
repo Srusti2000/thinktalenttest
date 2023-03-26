@@ -31,4 +31,24 @@ public class NameDao {
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(name);
         insertActor.execute(param);
     }
+
+    public Name get(int id) {
+        String sql = "SELECT * FROM NAME WHERE id = ?";
+        Object[] args = {id};
+        Name name = jdbcTemplate.queryForObject(sql, args,
+                BeanPropertyRowMapper.newInstance(Name.class));
+        return name;
+    }
+
+    public void update(Name name) {
+        String sql = "UPDATE NAME SET firstname=:firstName, lastname=:lastName WHERE id=:id";
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(name);
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+        template.update(sql, param);
+    }
+
+    public void delete(int id) {
+        String sql = "DELETE FROM NAME WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }
